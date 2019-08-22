@@ -6,11 +6,11 @@ const bcrypt = require('bcrypt')
 
 //Authenticating User login
 router.post('/', (req, res) => {
-  Patient.findOne({ userName: req.body.userName }, (error, foundUsers) => {
-    if (foundUsers) {
-      if (bcrypt.compareSync(req.body.password, foundUsers.password)) {
-        console.log(foundUsers)
-        res.status(200).json(foundUsers)
+  Patient.findOne({ userName: req.body.userName }, (error, foundPatient) => {
+    if (foundPatient) {
+      if (bcrypt.compareSync(req.body.password, foundPatient.password)) {
+        console.log(foundPatient)
+        res.status(200).json(foundPatient)
       } else if (error) {
         console.log('Not able to sign in');
         res.json({error: error.message})
@@ -19,11 +19,11 @@ router.post('/', (req, res) => {
         res.status(300).json('error')
       }
     } else {
-      Doctor.findOne({ userName: req.body.userName }, (error, foundUsers) => {
-        if (foundUsers) {
-          if (bcrypt.compareSync(req.body.password, foundUsers.password)) {
-            console.log(foundUsers)
-            res.status(200).json(foundUsers)
+      Doctor.findOne({ userName: req.body.userName }, (error, foundDoctor) => {
+        if (foundDoctor) {
+          if (bcrypt.compareSync(req.body.password, foundDoctor.password)) {
+            console.log(foundDoctor)
+            res.status(200).json(foundDoc)
           } else if (error) {
             console.log('Not able to sign in');
             res.json({error: error.message})
