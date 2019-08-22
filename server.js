@@ -9,7 +9,8 @@ const cors = require('cors');
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const open = require('open');
-const serverPort = 3003;
+require('dotenv').config()
+
 
 //Socket
 const http = require('http');
@@ -17,6 +18,8 @@ const server = http.createServer(app);
 const io = require('socket.io')(server);
 
 //Configuration
+const PORT = process.env.PORT || 3003;
+const MONGODB_URI = process.env.MONGODB || 'mongodb://localhost:27017/pocdoc'
 
 //Controllers
 const patientController = require('./controllers/patients.js')
@@ -25,7 +28,7 @@ const sessionController = require('./controllers/session.js')
 const visitController = require('./controllers/visits.js')
 
 //Database
-mongoose.connect('mongodb://localhost:27017/pocdoc', {useNewUrlParser: true})
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true})
 mongoose.connection.once('open', () => {
   console.log('You are connected to MongoDb!');
 })
@@ -137,6 +140,6 @@ io.on('connection', (socket) => {
   })
 })
 
-server.listen(serverPort, () => {
-   console.log('server up and running at %s port', serverPort);
+server.listen(process.env.PORT, () => {
+   console.log('server up and running at %s port', process.env.PORT);
  });
