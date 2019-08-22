@@ -19,7 +19,7 @@ const io = require('socket.io')(server);
 
 //Configuration
 const PORT = process.env.PORT || 3003;
-const MONGODB_URI = process.env.MONGODB || 'mongodb://localhost:27017/pocdoc'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/pocdoc'
 
 //Controllers
 const patientController = require('./controllers/patients.js')
