@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
         if (foundDoctor) {
           if (bcrypt.compareSync(req.body.password, foundDoctor.password)) {
             console.log(foundDoctor)
-            res.status(200).json(foundDoc)
+            res.status(200).json(foundDoctor)
           } else if (error) {
             console.log('Not able to sign in');
             res.json({error: error.message})
