@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 })
 
 //Create Visit for logged in Patient.
-router.post('/:id/new', (req, res) => {
+router.post('/new', (req, res) => {
   Visit.create(req.body, (error, visit) => {
     if (error) {
       res.status(400).json({error: error.message})
