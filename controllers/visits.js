@@ -14,6 +14,18 @@ router.get('/', (req, res) => {
   })
 })
 
+//Get route to visit other user profiles
+router.get('/:id', (req, res) => {
+  Visit.findOne({_id: req.params.id}, (error, foundVisit) => {
+    if (error) {
+      res.status(400).json({error: error.message})
+    }else {
+      console.log(foundVisit);
+      res.status(200).json(foundVisit)
+    }
+  })
+})
+
 //Create Visit for logged in Patient.
 router.post('/new', (req, res) => {
   Visit.create(req.body, (error, visit) => {
